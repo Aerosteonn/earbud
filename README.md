@@ -1,3 +1,2 @@
-ExpressJs + Passport.js + MySQL Authentication
+Earbud Webserver + Passport/MySQL Authentication using Express
 ===========================
-An authentication system using passportjs and mysql as the data storage for the users, while using expressjs module to facilitate the routing.
