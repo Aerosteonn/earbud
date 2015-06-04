@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 // custom library
 // model
-var Model = require('./model');
+var Model = require('./users');
 
 // index
 var index = function(req, res, next) {
@@ -17,7 +17,7 @@ var index = function(req, res, next) {
       if(user !== undefined) {
          user = user.toJSON();
       }
-      res.render('index', {title: 'Home', user: user});
+      res.render('index', {title: 'Earbud Dashboard', user: user});
    }
 };
 

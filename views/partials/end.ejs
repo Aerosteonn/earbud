@@ -9,9 +9,28 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="Bootstrap/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
+<!--&lt;!&ndash; Morris Charts JavaScript &ndash;&gt;-->
+<!--<script src="Bootstrap/bower_components/raphael/raphael-min.js"></script>-->
+<!--<script src="Bootstrap/bower_components/morrisjs/morris.min.js"></script>-->
+<!--<script src="Bootstrap/js/morris-data.js"></script>-->
+
 <!-- Custom Theme JavaScript -->
 <script src="Bootstrap/dist/js/sb-admin-2.js"></script>
 
-</body>
+<script>
+    function startTime() {
+        var today=new Date();
+        var h=today.getHours();
+        var m=today.getMinutes();
+        var s=today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML = h+":"+m+":"+s;
+        var t = setTimeout(function(){startTime()},500);
+    }
 
-</html>
+    function checkTime(i) {
+        if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+</script>
