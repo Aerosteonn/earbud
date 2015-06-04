@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 // custom library
 // model
-var Model = require('./users');
+var Model = require('./../models/users');
 
 // index
 var index = function(req, res, next) {

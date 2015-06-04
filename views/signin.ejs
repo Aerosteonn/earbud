@@ -1,9 +1,16 @@
-<% include ../views/partials/head %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../views/partials/head %>
+</head>
+
+<body>
 
 <div class="container">
    <div class="row">
       <div class="col-md-4 col-md-offset-4">
-         <div class="login-panel panel panel-default">
+         <div class="login-panel panel panel-primary">
             <div class="panel-heading">
                <h3 class="panel-title">Please Sign In</h3>
             </div>
@@ -30,9 +37,9 @@
                         <input type="submit" name="signin" id="signin" value="sign in" class="btn btn-lg btn-success btn-block"/>
                      </div>
                       <br>
-                     <div class="button">
+                     <div class="button" align="center">
                         <!-- Change this to a button or input when using this as a form -->
-                         <a href="/signup" class="btn btn-lg btn-danger btn-block">Register</a>
+                         Don't have an account yet? <a href="/signup">Register!</a>
                      </div>
                   </fieldset>
                </form>
@@ -43,3 +50,7 @@
 </div>
 
 <% include ../views/partials/end %>
+
+</body>
+
+</html>
