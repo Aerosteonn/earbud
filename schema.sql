@@ -2,7 +2,7 @@ drop database if exists earbud;
 
 create database if not exists earbud;
 
-use users;
+use earbud;
 
 drop table if exists users;
 

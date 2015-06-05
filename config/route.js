@@ -69,7 +69,7 @@ var signUpPost = function(req, res, next) {
 
    return usernamePromise.then(function(model) {
       if(model) {
-         res.render('signup', {title: 'signup', errorMessage: 'username already exists'});
+         res.render('signup', {title: 'signup', errorMessage: 'Unfortunately a user with this username already exists!'});
       } else {
          //****************************************************//
          // MORE VALIDATION GOES HERE(E.G. PASSWORD VALIDATION)

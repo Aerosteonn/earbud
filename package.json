@@ -14,7 +14,6 @@
       "cookie-parser": "*",
       "express-session": "*",
       "bcrypt-nodejs": "*",
-      "jade": "~1.9.2",
       "ejs": "*",
       "morgan": "~1.5.1",
       "passport": "*",
