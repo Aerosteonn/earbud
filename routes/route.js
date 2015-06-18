@@ -57,6 +57,7 @@ var signUp = function(req, res, next) {
       res.redirect('/');
    } else {
       res.render('signup', {title: 'Sign Up'});
+      exec('./kaku B 2 on');
    }
 };
 
