@@ -22,7 +22,7 @@ var index = function (req, res, next) {
     }
 };
 
-exec('kaku B 2 on', function(error, stdout, stderr) {
+exec('kaku C 1 on', function(error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
     if (error !== null) {
