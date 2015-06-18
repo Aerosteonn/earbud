@@ -1,7 +1,6 @@
 // vendor library
 var passport = require('passport');
 var bcrypt = require('bcrypt-nodejs');
-var exec = require('child_process').exec;
 
 // custom library
 // model
@@ -22,12 +21,20 @@ var index = function (req, res, next) {
     }
 };
 
+var exec = require('child_process').exec;
+exec('sudo wiringPi/examples/lights/kaku B 2 on', function(error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    if (error !== null) {
+        console.log('exec error: ' + error);
+    }
+});
+
 // sign in
 // GET
 var signIn = function (req, res, next) {
     if (req.isAuthenticated()) res.redirect('/');
     res.render('signin', {title: 'Sign In'});
-    exec('sudo wiringPi/examples/lights/kaku B 2 on');
 };
 
 // sign in
