@@ -79,7 +79,9 @@
                                     <i class="fa fa-clock-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><div id="txt"></div></div>
+                                    <div class="huge">
+                                        <div id="txt"></div>
+                                    </div>
                                     <div>System online time!</div>
                                 </div>
                             </div>
@@ -94,16 +96,89 @@
                         </a>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Een korte introductie tot het systeem!
+                            </div>
+                            <div class="panel-body">
+                                <p class="lead">Sta het gebruik van je microfoon toe en je kan direct beginnen met praten!</p>
+                                <p class="lead">Zeg maar eens 'Hallo' of 'Tot ziens! en er zijn nog veel meer mogelijkheden!'</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
-    </div>
+</div>
 
-    <% include ../views/partials/end %>
+<% include ../views/partials/end %>
 
 </body>
+
+<script>
+    if (annyang) {
+
+        var goodbye = function(){
+            window.open('/signout', "_self");
+        }
+
+        var hello = function(){
+            alert('Hallo!');
+        }
+
+        var helloName = function(name){
+            alert('Hallo! ik ben ' + name + '!');
+        }
+
+        var helloPerson = function(name){
+            alert('Hallo ' + name + ', hoe maakt u het?');
+        }
+
+        var kaas = function(){
+            alert('Panda!');
+        }
+
+        var test= function(saus){
+            alert(saus + '!');
+        }
+
+        // Let's define our first command. First the text we expect, and then the function it should call
+        var commands = {
+
+            'Tot ziens': goodbye,
+            'Doei': goodbye,
+
+            'Hallo': hello,
+            'Hoi': hello,
+            'Goedendag': hello,
+
+            // Met naam
+            'Hallo *name': helloName,
+            'Hoi *name': helloName,
+            'Goedendag *name': helloName,
+
+            'test :saus': test,
+            'panda': kaas,
+
+            'Ik heet *name': helloPerson,
+            'Ik ben *name': helloPerson
+        };
+
+        // Start Debug
+        annyang.debug();
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+    }
+</script>
 
 </html>
