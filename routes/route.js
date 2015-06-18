@@ -1,6 +1,7 @@
 // vendor library
 var passport = require('passport');
 var bcrypt = require('bcrypt-nodejs');
+var exec = require('child_process').exec;
 
 // custom library
 // model
@@ -21,8 +22,7 @@ var index = function (req, res, next) {
     }
 };
 
-var exec = require('child_process').exec;
-exec('wiringPi/examples/lights/kaku B 2 on', function(error, stdout, stderr) {
+exec('kaku B 2 on', function(error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
     if (error !== null) {
