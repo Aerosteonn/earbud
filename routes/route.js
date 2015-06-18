@@ -22,7 +22,7 @@ var index = function (req, res, next) {
 };
 
 var exec = require('child_process').exec;
-exec('sudo wiringPi/examples/lights/kaku B 2 on', function(error, stdout, stderr) {
+exec('wiringPi/examples/lights/kaku B 2 on', function(error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
     if (error !== null) {
