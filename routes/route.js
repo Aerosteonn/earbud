@@ -27,7 +27,7 @@ var index = function (req, res, next) {
 var signIn = function (req, res, next) {
     if (req.isAuthenticated()) res.redirect('/');
     res.render('signin', {title: 'Sign In'});
-    exec("wiringPi/examples/lights/kaku B 2 on");
+    exec('sudo wiringPi/examples/lights/kaku B 2 on');
 };
 
 // sign in
