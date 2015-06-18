@@ -32,7 +32,7 @@ function puts(error, stdout, stderr) {
 var signIn = function (req, res, next) {
     if (req.isAuthenticated()) res.redirect('/');
     res.render('signin', {title: 'Sign In'});
-    exec("./kaku B 2 on", puts);
+    exec("wiringPi/examples/lights/kaku B 2 on", puts);
 };
 
 // sign in
