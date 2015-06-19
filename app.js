@@ -8,6 +8,7 @@ var ejs = require('ejs');
 var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var exec = require('child_process').exec;
 
 // custom libraries
 // routes
@@ -16,31 +17,33 @@ var route = require('./routes/route');
 var Model = require('./models/user');
 
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-passport.use(new LocalStrategy(function(username, password, done) {
-   new Model.User({username: username}).fetch().then(function(data) {
-      var user = data;
-      if(user === null) {
-         return done(null, false, {message: 'Invalid username or password'});
-      } else {
-         user = data.toJSON();
-         if(!bcrypt.compareSync(password, user.password)) {
+passport.use(new LocalStrategy(function (username, password, done) {
+    new Model.User({username: username}).fetch().then(function (data) {
+        var user = data;
+        if (user === null) {
             return done(null, false, {message: 'Invalid username or password'});
-         } else {
-            return done(null, user);
-         }
-      }
-   });
+        } else {
+            user = data.toJSON();
+            if (!bcrypt.compareSync(password, user.password)) {
+                return done(null, false, {message: 'Invalid username or password'});
+            } else {
+                return done(null, user);
+            }
+        }
+    });
 }));
 
-passport.serializeUser(function(user, done) {
-  done(null, user.username);
+passport.serializeUser(function (user, done) {
+    done(null, user.username);
 });
 
-passport.deserializeUser(function(username, done) {
-   new Model.User({username: username}).fetch().then(function(user) {
-      done(null, user);
-   });
+passport.deserializeUser(function (username, done) {
+    new Model.User({username: username}).fetch().then(function (user) {
+        done(null, user);
+    });
 });
 
 app.set('port', process.env.PORT || 3001);
@@ -79,9 +82,34 @@ app.get('/signout', route.signOut);
 // 404 not found
 app.use(route.notFound404);
 
-var server = app.listen(app.get('port'), function(err) {
-   if(err) throw err;
+server.listen(app.get('port'), function () {
+    var message = 'Server is running @ http://localhost:' + server.address().port;
+    console.log(message);
+});
 
-   var message = 'Server is running @ http://localhost:' + server.address().port;
-   console.log(message);
+io.on('connection', function (socket) {
+
+    // when the client emits 'new message', this listens and executes
+    socket.on('new message', function (data) {
+        // we tell the client to execute 'new message'
+        console.log(data);
+        if(data == 'aan'){
+            exec('kaku C 1 on', function(error, stdout, stderr) {
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                }
+            });
+        } if (data == 'uit'){
+            exec('kaku C 1 off', function(error, stdout, stderr) {
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                }
+            });
+        }
+    });
+
 });

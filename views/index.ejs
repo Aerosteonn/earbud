@@ -122,6 +122,8 @@
 </body>
 
 <script>
+    var socket = io();
+
     if (annyang) {
 
         var goodbye = function(){
@@ -144,8 +146,9 @@
             alert('Panda!');
         }
 
-        var test = function(){
-            alert('test');
+        var test = function(status){
+            socket.emit('new message', status);
+            alert(status);
         }
 
         // Let's define our first command. First the text we expect, and then the function it should call
@@ -163,7 +166,7 @@
             'Hoi *name': helloName,
             'Goedendag *name': helloName,
 
-            'test': test,
+            'licht *status': test,
             'panda': kaas,
 
             'Ik heet *name': helloPerson,

@@ -1,7 +1,6 @@
 // vendor library
 var passport = require('passport');
 var bcrypt = require('bcrypt-nodejs');
-var exec = require('child_process').exec;
 
 // custom library
 // model
@@ -22,26 +21,11 @@ var index = function (req, res, next) {
     }
 };
 
-exec('kaku C 1 on', function(error, stdout, stderr) {
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-    if (error !== null) {
-        console.log('exec error: ' + error);
-    }
-});
-
 // sign in
 // GET
 var signIn = function (req, res, next) {
     if (req.isAuthenticated()) res.redirect('/');
     res.render('signin', {title: 'Sign In'});
-    exec('kaku C 1 on', function(error, stdout, stderr) {
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-        if (error !== null) {
-            console.log('exec error: ' + error);
-        }
-    });
 };
 
 // sign in
@@ -66,13 +50,6 @@ var signInPost = function (req, res, next) {
             }
         });
     })(req, res, next);
-    exec('kaku C 1 off', function(error, stdout, stderr) {
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-        if (error !== null) {
-            console.log('exec error: ' + error);
-        }
-    });
 };
 
 // sign up

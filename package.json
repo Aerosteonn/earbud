@@ -20,7 +20,7 @@
       "passport-local": "*",
       "mysql": "*",
       "bookshelf": "0.5",
-      "node-wiringpi": "*",
-      "exec": "*"
+      "exec": "*",
+      "socket.io": "*"
    }
 }
