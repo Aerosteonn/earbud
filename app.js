@@ -106,6 +106,7 @@ io.on('connection', function (socket) {
 
         if (data == 'kook water') {
             if (!cookerInUse) {
+                cookerInUse = true;
                 kaku('C', '2', 'on');
                 setTimeout(function () {
                     kaku('C', '2', 'off');
