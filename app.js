@@ -116,7 +116,6 @@ io.on('connection', function (socket) {
                 console.log('Cooker is already in use!');
             }
         }
-
     });
 
 });
