@@ -168,6 +168,18 @@ io.on('connection', function (socket) {
             rem('KEY_CONTENTS');
         }
 
+        if (data.command == 'tv pauze') {
+            rem('KEY_PAUSE');
+        }
+
+        if (data.command == 'tv play') {
+            rem('KEY_PLAY');
+        }
+
+        if (data.command == 'tv afspelen') {
+            rem('KEY_PLAY');
+        }
+
         // WATER COOKER ----------------------------------------
         if (data.command == 'kook water') {
             if (!cookerInUse) {
