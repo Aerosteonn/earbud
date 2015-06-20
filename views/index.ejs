@@ -147,7 +147,7 @@
         }
 
         var licht = function(status){
-            socket.emit('new message', 'licht ' + status);
+            socket.emit('new message', 'nachtlamp ' + status);
         }
 
         var cookWater = function(){
@@ -170,7 +170,7 @@
             'Goedendag *name': helloName,
 
             // devices
-            'licht *status': licht,
+            'nachtlamp *status': licht,
             'kook water': cookWater,
 
             'panda': kaas,
