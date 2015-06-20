@@ -100,6 +100,8 @@ io.on('connection', function (socket) {
         // we tell the client to execute 'new message'
         console.log(data);
 
+
+        // LIGHTS ----------------------------------------------
         if (data.command == 'nachtlamp aan') {
             kaku('C', '1', 'on');
         }
@@ -108,6 +110,7 @@ io.on('connection', function (socket) {
             kaku('C', '1', 'off');
         }
 
+        // VENT ------------------------------------------------
         if (data.command == 'ventilator aan') {
             kaku('C', '3', 'on');
         }
@@ -116,16 +119,56 @@ io.on('connection', function (socket) {
             kaku('C', '3', 'off');
         }
 
+        // TV --------------------------------------------------
         if (data.command == 'tv hdmi') {
-            remote.send('KEY_HDMI', function callback(err) {
-                if (err) {
-                    throw new Error(err);
-                } else {
-                    // command has been successfully transmitted to your tv
-                }
-            });
+            rem('KEY_HDMI');
         }
 
+        if (data.command == 'tv slaap') {
+            rem('KEY_SLEEP');
+        }
+
+        if (data.command == 'tv slaap') {
+            rem('KEY_HOME');
+        }
+
+        if (data.command == 'tv thuis') {
+            rem('KEY_HOME');
+        }
+
+        if (data.command == 'tv enter') {
+            rem('KEY_ENTER');
+        }
+
+        if (data.command == 'tv naar rechts') {
+            rem('KEY_RIGHT');
+        }
+
+        if (data.command == 'tv naar links') {
+            rem('KEY_LEFT');
+        }
+
+        if (data.command == 'tv naar boven') {
+            rem('KEY_UP');
+        }
+
+        if (data.command == 'tv naar beneden') {
+            rem('KEY_DOWN');
+        }
+
+        if (data.command == 'tv menu') {
+            rem('KEY_MENU');
+        }
+
+        if (data.command == 'tv terug') {
+            rem('KEY_RETURN');
+        }
+
+        if (data.command == 'tv smart') {
+            rem('KEY_CONTENTS');
+        }
+
+        // WATER COOKER ----------------------------------------
         if (data.command == 'kook water') {
             if (!cookerInUse) {
                 cookerInUse = true;
@@ -154,6 +197,16 @@ var kaku = function (channel1, channel2, status) {
         }
         if (error !== null) {
             console.log('exec error: ' + error);
+        }
+    });
+}
+
+var rem = function (key) {
+    remote.send(key, function callback(err) {
+        if (err) {
+            throw new Error(err);
+        } else {
+            // command has been successfully transmitted to your tv
         }
     });
 }
