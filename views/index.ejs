@@ -146,6 +146,10 @@
             alert('Panda!');
         }
 
+        var tv = function(param){
+            socket.emit('request', {command:'tv ' + param});
+        }
+
         var light = function(status){
             socket.emit('request', {command:'nachtlamp ' + status});
         }
@@ -167,6 +171,8 @@
             'Hallo': hello,
             'Hoi': hello,
             'Goedendag': hello,
+
+            'tv *param': tv,
 
             // Met naam
             'Hallo *name': helloName,

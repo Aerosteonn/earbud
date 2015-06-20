@@ -3,7 +3,7 @@
     <envs>
       <env name="DEBUG" value="earbud:*" />
     </envs>
-    <browser start="true" url="http://localhost:3001/" />
+    <browser url="http://localhost:3001/" />
     <method />
   </configuration>
 </component>

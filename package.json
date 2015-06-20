@@ -21,6 +21,7 @@
       "mysql": "*",
       "bookshelf": "0.5",
       "exec": "*",
-      "socket.io": "*"
+      "socket.io": "*",
+      "samsung-remote": "1.2.4"
    }
 }

@@ -9,6 +9,10 @@ var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var exec = require('child_process').exec;
+var SamsungRemote = require('samsung-remote');
+var remote = new SamsungRemote({
+    ip: '192.168.188.130' // required: IP address of your Samsung Smart TV
+});
 
 // custom libraries
 // routes
@@ -110,6 +114,16 @@ io.on('connection', function (socket) {
 
         if (data.command == 'ventilator uit') {
             kaku('C', '3', 'off');
+        }
+
+        if (data.command == 'tv hdmi') {
+            remote.send('KEY_HDMI', function callback(err) {
+                if (err) {
+                    throw new Error(err);
+                } else {
+                    // command has been successfully transmitted to your tv
+                }
+            });
         }
 
         if (data.command == 'kook water') {
