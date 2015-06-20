@@ -112,7 +112,7 @@ io.on('connection', function (socket) {
             kaku('C', '3', 'off');
         }
 
-        if (data == 'kook water') {
+        if (data.command == 'kook water') {
             if (!cookerInUse) {
                 cookerInUse = true;
                 //console.log(cookerInUse);
