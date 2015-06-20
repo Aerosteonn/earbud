@@ -92,16 +92,24 @@ var cookerInUse = false;
 io.on('connection', function (socket) {
 
     // when the client emits 'new message', this listens and executes
-    socket.on('new message', function (data) {
+    socket.on('request', function (data) {
         // we tell the client to execute 'new message'
         console.log(data);
 
-        if (data == 'nachtlamp aan') {
+        if (data.command == 'nachtlamp aan') {
             kaku('C', '1', 'on');
         }
 
-        if (data == 'nachtlamp uit') {
+        if (data.command == 'nachtlamp uit') {
             kaku('C', '1', 'off');
+        }
+
+        if (data.command == 'ventilator aan') {
+            kaku('C', '3', 'on');
+        }
+
+        if (data.command == 'ventilator uit') {
+            kaku('C', '3', 'off');
         }
 
         if (data == 'kook water') {

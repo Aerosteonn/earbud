@@ -146,17 +146,17 @@
             alert('Panda!');
         }
 
-        var licht = function(status){
-            socket.emit('new message', 'nachtlamp ' + status);
+        var light = function(status){
+            socket.emit('request', {command:'nachtlamp ' + status});
+        }
+
+        var vent = function(status){
+            socket.emit('request', {command:'ventilator ' + status});
         }
 
         var cookWater = function(){
-            socket.emit('new message', 'kook water');
+            socket.emit('request', {command: 'kook water'});
         }
-
-//        var test = function(){
-//            socket.emit('new message', 'test');
-//        }
 
         // Let's define our first command. First the text we expect, and then the function it should call
         var commands = {
@@ -174,8 +174,9 @@
             'Goedendag *name': helloName,
 
             // devices
-            'nachtlamp *status': licht,
+            'nachtlamp *status': light,
             'kook water': cookWater,
+            'ventilator *status': vent,
 
 //            'test': test,
             'panda': kaas,
@@ -193,6 +194,7 @@
         // Start listening. You can call this here, or attach this call to an event, button, etc.
         annyang.start();
     }
+
 </script>
 
 </html>
