@@ -87,33 +87,48 @@ server.listen(app.get('port'), function () {
     console.log(message);
 });
 
+var cookerInUse = false;
+
 io.on('connection', function (socket) {
 
     // when the client emits 'new message', this listens and executes
     socket.on('new message', function (data) {
         // we tell the client to execute 'new message'
         console.log(data);
-        if(data == 'nachtlamp aan'){
-            kaku('C', '1', 'on')
+
+        if (data == 'nachtlamp aan') {
+            kaku('C', '1', 'on');
         }
 
-        if (data == 'nachtlamp uit'){
-            kaku('C', '1', 'off')
+        if (data == 'nachtlamp uit') {
+            kaku('C', '1', 'off');
         }
 
-        if (data == 'kook water'){
-            kaku('C', '2', 'on')
+        if (data == 'kook water') {
+            if (!cookerInUse) {
+                kaku('C', '2', 'on');
+                setTimeout(function () {
+                    kaku('C', '2', 'off');
+                    cookerInUse = false;
+                }, 1 * 10000);
+            } else {
+                console.log('Cooker is already in use!');
+            }
         }
 
     });
 
 });
 
-var kaku = function(channel1, channel2, status){
+var kaku = function (channel1, channel2, status) {
     var command = 'kaku ' + channel1 + ' ' + channel2 + ' ' + status;
-    exec(command, function(error, stdout, stderr) {
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
+    exec(command, function (error, stdout, stderr) {
+        if (stdout !== null) {
+            console.log('stdout: ' + stdout);
+        }
+        if (stderr !== null) {
+            console.log('stderr: ' + stderr);
+        }
         if (error !== null) {
             console.log('exec error: ' + error);
         }
