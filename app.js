@@ -93,23 +93,29 @@ io.on('connection', function (socket) {
     socket.on('new message', function (data) {
         // we tell the client to execute 'new message'
         console.log(data);
-        if(data == 'aan'){
-            exec('kaku C 1 on', function(error, stdout, stderr) {
-                console.log('stdout: ' + stdout);
-                console.log('stderr: ' + stderr);
-                if (error !== null) {
-                    console.log('exec error: ' + error);
-                }
-            });
-        } if (data == 'uit'){
-            exec('kaku C 1 off', function(error, stdout, stderr) {
-                console.log('stdout: ' + stdout);
-                console.log('stderr: ' + stderr);
-                if (error !== null) {
-                    console.log('exec error: ' + error);
-                }
-            });
+        if(data == 'nachtlamp aan'){
+            kaku('C', '1', 'on')
         }
+
+        if (data == 'nachtlamp uit'){
+            kaku('C', '1', 'off')
+        }
+
+        if (data == 'kook water'){
+            kaku('C', '2', 'on')
+        }
+
     });
 
 });
+
+var kaku = function(channel1, channel2, status){
+    var command = 'kaku ' + channel1 + ' ' + channel2 + ' ' + status;
+    exec(command, function(error, stdout, stderr) {
+        console.log('stdout: ' + stdout);
+        console.log('stderr: ' + stderr);
+        if (error !== null) {
+            console.log('exec error: ' + error);
+        }
+    });
+}
