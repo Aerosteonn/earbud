@@ -111,7 +111,7 @@ io.on('connection', function (socket) {
                 setTimeout(function () {
                     kaku('C', '2', 'off');
                     cookerInUse = false;
-                }, 1 * 10000);
+                }, 6 * 10000);
             } else {
                 console.log('Cooker is already in use!');
             }
