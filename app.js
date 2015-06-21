@@ -100,6 +100,8 @@ io.on('connection', function (socket) {
         // we tell the client to execute 'new message'
         console.log(data);
 
+        var number = parseInt(data.command, 10);
+        console.log(number);
 
         // LIGHTS ----------------------------------------------
         if (data.command == 'nachtlamp aan') {
@@ -205,7 +207,7 @@ io.on('connection', function (socket) {
                 setTimeout(function () {
                     kaku('C', '2', 'off');
                     cookerInUse = false;
-                }, 6 * 10000);
+                }, 18 * 10000);
             } else {
                 console.log('Cooker is already in use!');
             }
