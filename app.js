@@ -134,6 +134,26 @@ io.on('connection', function (socket) {
         }
 
         // TV --------------------------------------------------
+        if (data.command == 'tv volume omhoog') {
+            rem('KEY_VOLUP');
+        }
+
+        if (data.command == 'tv volume omlaag') {
+            rem('KEY_VOLDOWN');
+        }
+
+        if (data.command == 'tv volume 10 omhoog') {
+            for (i = 0; i < 10; i++) {
+                rem('KEY_VOLUP');
+            }
+        }
+
+        if (data.command == 'tv volume 10 omlaag') {
+            for (i = 0; i < 10; i++) {
+                rem('KEY_VOLDOWN');
+            }
+        }
+
         if (data.command == 'tv hdmi') {
             rem('KEY_HDMI');
         }
