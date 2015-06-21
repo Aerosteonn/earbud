@@ -144,13 +144,17 @@ io.on('connection', function (socket) {
 
         if (data.command == 'tv volume 10 omhoog') {
             for (i = 0; i < 10; i++) {
-                rem('KEY_VOLUP');
+                setTimeout(function () {
+                    rem('KEY_VOLUP');
+                }, 2 * 100);
             }
         }
 
         if (data.command == 'tv volume 10 omlaag') {
             for (i = 0; i < 10; i++) {
-                rem('KEY_VOLDOWN');
+                setTimeout(function () {
+                    rem('KEY_VOLDOWN');
+                }, 2 * 100);
             }
         }
 
