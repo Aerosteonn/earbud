@@ -207,5 +207,12 @@
     }
 
 </script>
+<script>
+    var socket = io();
+
+    socket.on('message', function (data) {
+        alert(data.message);
+    });
+</script>
 
 </html>

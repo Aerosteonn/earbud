@@ -106,19 +106,31 @@ io.on('connection', function (socket) {
         // LIGHTS ----------------------------------------------
         if (data.command == 'nachtlamp aan') {
             kaku('C', '1', 'on');
+            socket.emit('message', {
+                message: 'nachtlamp aan'
+            });
         }
 
         if (data.command == 'nachtlamp uit') {
             kaku('C', '1', 'off');
+            socket.emit('message', {
+                message: 'nachtlamp uit'
+            });
         }
 
         // VENT ------------------------------------------------
         if (data.command == 'ventilator aan') {
             kaku('C', '3', 'on');
+            socket.emit('message', {
+                message: 'Ventilator aan'
+            });
         }
 
         if (data.command == 'ventilator uit') {
             kaku('C', '3', 'off');
+            socket.emit('message', {
+                message: 'Ventilator uit'
+            });
         }
 
         // TV --------------------------------------------------
@@ -207,9 +219,19 @@ io.on('connection', function (socket) {
                 setTimeout(function () {
                     kaku('C', '2', 'off');
                     cookerInUse = false;
+                    socket.emit('message', {
+                        message: 'Water heeft gekookt!'
+                    });
                 }, 18 * 10000);
+                console.log('started cooking water');
+                socket.emit('message', {
+                    message: 'Over 3 minuten heeft het water gekookt!'
+                });
             } else {
                 console.log('Cooker is already in use!');
+                socket.emit('message', {
+                    message: 'Water is al aan het koken!'
+                });
             }
         }
     });
