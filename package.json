@@ -23,6 +23,6 @@
       "exec": "*",
       "socket.io": "*",
       "samsung-remote": "1.2.4",
-      "ursa": "0.8.5"
+      "ps4-waker": "0.4.4"
    }
 }
