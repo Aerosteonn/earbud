@@ -107,14 +107,14 @@ io.on('connection', function (socket) {
         if (data.command == 'nachtlamp aan') {
             kaku('C', '1', 'on');
             socket.emit('message', {
-                message: 'nachtlamp aan'
+                message: 'nachtlamp staat nu aan'
             });
         }
 
         if (data.command == 'nachtlamp uit') {
             kaku('C', '1', 'off');
             socket.emit('message', {
-                message: 'nachtlamp uit'
+                message: 'nachtlamp staat nu uit'
             });
         }
 
@@ -122,14 +122,14 @@ io.on('connection', function (socket) {
         if (data.command == 'ventilator aan') {
             kaku('C', '3', 'on');
             socket.emit('message', {
-                message: 'Ventilator aan'
+                message: 'Ventilator staat nu aan'
             });
         }
 
         if (data.command == 'ventilator uit') {
             kaku('C', '3', 'off');
             socket.emit('message', {
-                message: 'Ventilator uit'
+                message: 'Ventilator staat nu uit'
             });
         }
 

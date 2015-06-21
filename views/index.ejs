@@ -210,9 +210,21 @@
 <script>
     var socket = io();
 
-    socket.on('message', function (data) {
-        alert(data.message);
-    });
+    if ('speechSynthesis' in window) {
+        socket.on('message', function (data) {
+            var msg = new SpeechSynthesisUtterance();
+            var voices = speechSynthesis.getVoices();
+            msg.lang = 'de-DE-';
+            msg.voice = voices[0];
+            msg.rate = 1; // 0.1 to 10
+            msg.text = data.message;
+            speechSynthesis.speak(msg);
+        });
+    } else {
+        socket.on('message', function (data) {
+            alert(data.message);
+        });
+    }
 </script>
 
 </html>
