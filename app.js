@@ -146,7 +146,7 @@ io.on('connection', function (socket) {
             for (i = 0; i < 10; i++) {
                 setTimeout(function () {
                     rem('KEY_VOLUP');
-                }, 2 * 100);
+                }, 10 * 100);
             }
         }
 
@@ -154,7 +154,7 @@ io.on('connection', function (socket) {
             for (i = 0; i < 10; i++) {
                 setTimeout(function () {
                     rem('KEY_VOLDOWN');
-                }, 2 * 100);
+                }, 10 * 100);
             }
         }
 
