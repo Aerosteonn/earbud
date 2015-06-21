@@ -162,6 +162,10 @@
             socket.emit('request', {command: 'kook water'});
         }
 
+        var ps4 = function(){
+            socket.emit('request', {command: 'playstation'});
+        }
+
         // Let's define our first command. First the text we expect, and then the function it should call
         var commands = {
 
@@ -183,8 +187,9 @@
             'nachtlamp *status': light,
             'kook water': cookWater,
             'ventilator *status': vent,
+            'playstation': ps4,
 
-//            'test': test,
+            // test
             'panda': kaas,
 
             'Ik heet *name': helloPerson,
