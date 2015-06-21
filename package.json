@@ -22,7 +22,6 @@
       "bookshelf": "0.5",
       "exec": "*",
       "socket.io": "*",
-      "samsung-remote": "1.2.4",
-      "ps4-waker": "0.4.4"
+      "samsung-remote": "1.2.4"
    }
 }

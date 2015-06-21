@@ -180,6 +180,22 @@ io.on('connection', function (socket) {
             rem('KEY_PLAY');
         }
 
+        // PLAYSTATION -----------------------------------------
+
+        if (data.command == 'playstation') {
+            exec('sudo ps4-waker', function (error, stdout, stderr) {
+                if (stdout !== null) {
+                    console.log('stdout: ' + stdout);
+                }
+                if (stderr !== null) {
+                    console.log('stderr: ' + stderr);
+                }
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                }
+            });
+        }
+
         // WATER COOKER ----------------------------------------
         if (data.command == 'kook water') {
             if (!cookerInUse) {
