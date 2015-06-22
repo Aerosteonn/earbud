@@ -170,7 +170,7 @@
             socket.emit('request', {command: 'playstation'});
         }
 
-        var curtain = function(){
+        var curtain = function(status){
             socket.emit('request', {command: 'gordijn' + status});
         }
 
