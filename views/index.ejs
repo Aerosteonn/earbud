@@ -226,7 +226,7 @@
         socket.on('message', function (data) {
             var msg = new SpeechSynthesisUtterance();
             var voices = speechSynthesis.getVoices();
-            msg.lang = 'de-DE-';
+            msg.lang = 'en-UK';
             msg.voice = voices[0];
             msg.rate = 1; // 0.1 to 10
             msg.text = data.message;

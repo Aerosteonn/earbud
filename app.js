@@ -109,14 +109,14 @@ io.on('connection', function (socket) {
         if (data.command == 'nachtlamp aan') {
             kaku('C', '1', 'on');
             socket.emit('message', {
-                message: 'nachtlamp staat nu aan'
+                message: 'Nightlight is now turned on!'
             });
         }
 
         if (data.command == 'nachtlamp uit') {
             kaku('C', '1', 'off');
             socket.emit('message', {
-                message: 'nachtlamp staat nu uit'
+                message: 'Nightlight is now off!'
             });
         }
 
@@ -124,14 +124,14 @@ io.on('connection', function (socket) {
         if (data.command == 'ventilator aan') {
             kaku('C', '3', 'on');
             socket.emit('message', {
-                message: 'Ventilator staat nu aan'
+                message: 'Fan has been turned on'
             });
         }
 
         if (data.command == 'ventilator uit') {
             kaku('C', '3', 'off');
             socket.emit('message', {
-                message: 'Ventilator staat nu uit'
+                message: 'Fan has been turned off'
             });
         }
 
@@ -139,14 +139,14 @@ io.on('connection', function (socket) {
         if (data.command == 'radio aan') {
             kaku('D', '2', 'on');
             socket.emit('message', {
-                message: 'Radio staat nu aan'
+                message: 'Radio has been turned on'
             });
         }
 
         if (data.command == 'radio uit') {
             kaku('D', '2', 'on');
             socket.emit('message', {
-                message: 'Radio staat nu uit'
+                message: 'Radio is now turned off'
             });
         }
 
@@ -159,7 +159,7 @@ io.on('connection', function (socket) {
                         curtainInUse = false;
                         curtainOpen = true;
                         socket.emit('message', {
-                            message: 'Gordijn staat nu open!'
+                            message: 'Curtain is now open!'
                         });
                     }, 38 * 1000);
                     //code that will be executed immediately
@@ -176,18 +176,18 @@ io.on('connection', function (socket) {
                         }
                     });
                     socket.emit('message', {
-                        message: 'Gordijn wordt open gezet!'
+                        message: 'Curtain is being opened!'
                     });
                     // curtainOpen Check
                 } else {
                     socket.emit('message', {
-                        message: 'Gordijn is al open!'
+                        message: 'Curtain is already open!'
                     });
                 }
                 // Curtain in use check
             } else {
                 socket.emit('message', {
-                    message: 'Gordijn is al in gebruik!'
+                    message: 'Curtain is already in use!'
                 });
             }
         }
@@ -200,7 +200,7 @@ io.on('connection', function (socket) {
                         curtainInUse = false;
                         curtainOpen = false;
                         socket.emit('message', {
-                            message: 'Gordijn is nu dicht!'
+                            message: 'Curtain has been closed!'
                         });
                     }, 38 * 1000);
                     //code that will be executed immediately
@@ -217,18 +217,18 @@ io.on('connection', function (socket) {
                         }
                     });
                     socket.emit('message', {
-                        message: 'Gordijn wordt gesloten!'
+                        message: 'Curtain is being closed'
                     });
                 // curtainOpen Check
                 } else {
                     socket.emit('message', {
-                        message: 'Gordijn is al dicht!'
+                        message: 'Curtain has been closed!'
                     });
                 }
             // Curtain in use check
             } else {
                 socket.emit('message', {
-                    message: 'Gordijn is al in gebruik!'
+                    message: 'Curtain is already in use!'
                 });
             }
         }
@@ -344,17 +344,17 @@ io.on('connection', function (socket) {
                     kaku('C', '2', 'off');
                     cookerInUse = false;
                     socket.emit('message', {
-                        message: 'Water heeft gekookt!'
+                        message: 'Water has been cooked!'
                     });
                 }, 18 * 10000);
                 console.log('started cooking water');
                 socket.emit('message', {
-                    message: 'Over 3 minuten heeft het water gekookt!'
+                    message: 'In 3 minutes the water will be done cooking'
                 });
             } else {
                 console.log('Cooker is already in use!');
                 socket.emit('message', {
-                    message: 'Water is al aan het koken!'
+                    message: 'Water is already cooking!'
                 });
             }
         }
