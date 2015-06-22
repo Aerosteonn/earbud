@@ -171,7 +171,7 @@
         }
 
         var curtain = function(status){
-            socket.emit('request', {command: 'gordijn' + status});
+            socket.emit('request', {command: 'gordijn ' + status});
         }
 
         // Let's define our first command. First the text we expect, and then the function it should call
