@@ -144,7 +144,7 @@ io.on('connection', function (socket) {
         }
 
         if (data.command == 'radio uit') {
-            kaku('D', '2', 'on');
+            kaku('D', '2', 'off');
             socket.emit('message', {
                 message: 'Radio is now turned off'
             });
