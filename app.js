@@ -153,7 +153,6 @@ io.on('connection', function (socket) {
         // CURTAIN ---------------------------------------------
         if (data.command == 'gordijn open') {
             if (!curtainInUse) {
-                curtainInUse = true;
                 if (!curtainOpen) {
                     // Code that is executed after timer
                     setTimeout(function () {
@@ -164,6 +163,7 @@ io.on('connection', function (socket) {
                         });
                     }, 38 * 1000);
                     //code that will be executed immediately
+                    curtainInUse = true;
                     exec('sudo python scripts/omhoog.py', function (error, stdout, stderr) {
                         if (stdout !== null) {
                             console.log('stdout: ' + stdout);
@@ -194,7 +194,6 @@ io.on('connection', function (socket) {
 
         if (data.command == 'gordijn dicht') {
             if (!curtainInUse) {
-                curtainInUse = true;
                 if (curtainOpen) {
                     // Code that is executed after timer
                     setTimeout(function () {
@@ -205,6 +204,7 @@ io.on('connection', function (socket) {
                         });
                     }, 38 * 1000);
                     //code that will be executed immediately
+                    curtainInUse = true;
                     exec('sudo python scripts/omlaag.py', function (error, stdout, stderr) {
                         if (stdout !== null) {
                             console.log('stdout: ' + stdout);
