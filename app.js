@@ -92,6 +92,8 @@ server.listen(app.get('port'), function () {
 });
 
 var cookerInUse = false;
+var curtainOpen = false;
+var curtainInUse = false;
 
 io.on('connection', function (socket) {
 
@@ -150,31 +152,85 @@ io.on('connection', function (socket) {
 
         // CURTAIN ---------------------------------------------
         if (data.command == 'gordijn open') {
-            exec('sudo python scripts/omhoog.py', function (error, stdout, stderr) {
-                if (stdout !== null) {
-                    console.log('stdout: ' + stdout);
+            if (!curtainInUse) {
+                curtainInUse = true;
+                if (!curtainOpen) {
+                    // Code that is executed after timer
+                    setTimeout(function () {
+                        curtainInUse = false;
+                        curtainOpen = true;
+                        socket.emit('message', {
+                            message: 'Gordijn staat nu open!'
+                        });
+                    }, 38 * 1000);
+                    //code that will be executed immediately
+                    exec('sudo python scripts/omhoog.py', function (error, stdout, stderr) {
+                        if (stdout !== null) {
+                            console.log('stdout: ' + stdout);
+                        }
+                        if (stderr !== null) {
+                            console.log('stderr: ' + stderr);
+                        }
+                        if (error !== null) {
+                            console.log('exec error: ' + error);
+                        }
+                    });
+                    socket.emit('message', {
+                        message: 'Gordijn wordt open gezet!'
+                    });
+                    // curtainOpen Check
+                } else {
+                    socket.emit('message', {
+                        message: 'Gordijn is al open!'
+                    });
                 }
-                if (stderr !== null) {
-                    console.log('stderr: ' + stderr);
-                }
-                if (error !== null) {
-                    console.log('exec error: ' + error);
-                }
-            });
+                // Curtain in use check
+            } else {
+                socket.emit('message', {
+                    message: 'Gordijn is al in gebruik!'
+                });
+            }
         }
 
         if (data.command == 'gordijn dicht') {
-            exec('sudo python scripts/omlaag.py', function (error, stdout, stderr) {
-                if (stdout !== null) {
-                    console.log('stdout: ' + stdout);
+            if (!curtainInUse) {
+                curtainInUse = true;
+                if (curtainOpen) {
+                    // Code that is executed after timer
+                    setTimeout(function () {
+                        curtainInUse = false;
+                        curtainOpen = false;
+                        socket.emit('message', {
+                            message: 'Gordijn is nu dicht!'
+                        });
+                    }, 38 * 1000);
+                    //code that will be executed immediately
+                    exec('sudo python scripts/omlaag.py', function (error, stdout, stderr) {
+                        if (stdout !== null) {
+                            console.log('stdout: ' + stdout);
+                        }
+                        if (stderr !== null) {
+                            console.log('stderr: ' + stderr);
+                        }
+                        if (error !== null) {
+                            console.log('exec error: ' + error);
+                        }
+                    });
+                    socket.emit('message', {
+                        message: 'Gordijn wordt gesloten!'
+                    });
+                // curtainOpen Check
+                } else {
+                    socket.emit('message', {
+                        message: 'Gordijn is al dicht!'
+                    });
                 }
-                if (stderr !== null) {
-                    console.log('stderr: ' + stderr);
-                }
-                if (error !== null) {
-                    console.log('exec error: ' + error);
-                }
-            });
+            // Curtain in use check
+            } else {
+                socket.emit('message', {
+                    message: 'Gordijn is al in gebruik!'
+                });
+            }
         }
 
         // TV --------------------------------------------------
