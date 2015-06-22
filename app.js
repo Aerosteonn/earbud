@@ -92,7 +92,7 @@ server.listen(app.get('port'), function () {
 });
 
 var cookerInUse = false;
-var curtainOpen = false;
+var curtainOpen = true;
 var curtainInUse = false;
 
 io.on('connection', function (socket) {
