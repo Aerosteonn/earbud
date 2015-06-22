@@ -3,7 +3,6 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 
-# Verwendete Pins am Rapberry Pi
 A=18
 B=23
 C=24
@@ -19,7 +18,6 @@ GPIO.output(B, False)
 GPIO.output(C, False)
 GPIO.output(D, False)
 
-# Schritte 1 - 8 festlegen
 def Step1():
     GPIO.output(D, True)
     sleep (time)
@@ -68,8 +66,7 @@ def Step8():
     GPIO.output(D, False)
     GPIO.output(A, False)
 
-# Volle Umdrehung    
-for i in range (2048):    
+for i in range (4096):
     Step1()
     Step2()
     Step3()
