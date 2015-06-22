@@ -154,6 +154,10 @@
             socket.emit('request', {command:'nachtlamp ' + status});
         }
 
+        var radio = function(status){
+            socket.emit('request', {command:'radio ' + status});
+        }
+
         var vent = function(status){
             socket.emit('request', {command:'ventilator ' + status});
         }
@@ -164,6 +168,10 @@
 
         var ps4 = function(){
             socket.emit('request', {command: 'playstation'});
+        }
+
+        var curtain = function(){
+            socket.emit('request', {command: 'gordijn' + status});
         }
 
         // Let's define our first command. First the text we expect, and then the function it should call
@@ -186,8 +194,11 @@
             // devices
             'nachtlamp *status': light,
             'kook water': cookWater,
+            'water koken': cookWater(),
             'ventilator *status': vent,
             'playstation': ps4,
+            'radio *status': radio,
+            'gordijn *status': curtain,
 
             // test
             'panda': kaas,
@@ -207,6 +218,7 @@
     }
 
 </script>
+
 <script>
     var socket = io();
 

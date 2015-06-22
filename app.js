@@ -118,7 +118,7 @@ io.on('connection', function (socket) {
             });
         }
 
-        // VENT ------------------------------------------------
+        // FAN -------------------------------------------------
         if (data.command == 'ventilator aan') {
             kaku('C', '3', 'on');
             socket.emit('message', {
@@ -130,6 +130,50 @@ io.on('connection', function (socket) {
             kaku('C', '3', 'off');
             socket.emit('message', {
                 message: 'Ventilator staat nu uit'
+            });
+        }
+
+        // RADIO -----------------------------------------------
+        if (data.command == 'radio aan') {
+            kaku('D', '2', 'on');
+            socket.emit('message', {
+                message: 'Radio staat nu aan'
+            });
+        }
+
+        if (data.command == 'radio uit') {
+            kaku('D', '2', 'on');
+            socket.emit('message', {
+                message: 'Radio staat nu uit'
+            });
+        }
+
+        // CURTAIN ---------------------------------------------
+        if (data.command == 'gordijn open') {
+            exec('sudo python scripts/omhoog.py', function (error, stdout, stderr) {
+                if (stdout !== null) {
+                    console.log('stdout: ' + stdout);
+                }
+                if (stderr !== null) {
+                    console.log('stderr: ' + stderr);
+                }
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                }
+            });
+        }
+
+        if (data.command == 'gordijn dicht') {
+            exec('sudo python scripts/omlaag.py', function (error, stdout, stderr) {
+                if (stdout !== null) {
+                    console.log('stdout: ' + stdout);
+                }
+                if (stderr !== null) {
+                    console.log('stderr: ' + stderr);
+                }
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                }
             });
         }
 
