@@ -154,6 +154,10 @@
             socket.emit('request', {command:'nachtlamp ' + status});
         }
 
+        var bedLight = function(status){
+            socket.emit('request', {command:'bedlamp ' + status});
+        }
+
         var radio = function(status){
             socket.emit('request', {command:'radio ' + status});
         }
@@ -193,6 +197,8 @@
 
             // devices
             'nachtlamp *status': light,
+            'bedlamp *status': bedLight,
+            'bed lamp *status': bedLight,
             'kook water': cookWater,
             'water koken': cookWater,
             'ventilator *status': vent,
@@ -226,7 +232,7 @@
         socket.on('message', function (data) {
             var msg = new SpeechSynthesisUtterance();
             var voices = speechSynthesis.getVoices();
-            msg.lang = 'en-UK';
+            msg.lang = 'nl-NL';
             msg.voice = voices[0];
             msg.rate = 1; // 0.1 to 10
             msg.text = data.message;
