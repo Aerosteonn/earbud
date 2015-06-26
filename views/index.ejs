@@ -176,10 +176,6 @@
             socket.emit('request', {command: 'nachtlamp ' + status});
         }
 
-        var deskLight = function (status) {
-            socket.emit('request', {command: 'bureaulamp ' + status});
-        }
-
         var bedLight = function (status) {
             socket.emit('request', {command: 'bedlamp ' + status});
         }
@@ -219,9 +215,6 @@
             // Met naam
             'Hallo *name': helloName,
             'Hoi *name': helloName,
-
-            'Bureaulamp *status': deskLamp,
-            'Bureau licht *status': deskLamp,
 
             'Goedendag *name': helloName,
 
