@@ -154,11 +154,11 @@ io.on('connection', function (socket) {
 
             setTimeout(function () {
                 kaku('M', '14', 'on');
-            }, 1000);
+            }, 1500);
 
             setTimeout(function () {
                 kaku('M', '16', 'on');
-            }, 2000);
+            }, 3000);
 
             socket.emit('message', {
                 message: 'Alle lichten worden aan gezet!'
@@ -171,11 +171,11 @@ io.on('connection', function (socket) {
 
             setTimeout(function () {
                 kaku('M', '14', 'off');
-            }, 1000);
+            }, 1500);
 
             setTimeout(function () {
                 kaku('M', '16', 'off');
-            }, 2000);
+            }, 3000);
 
             socket.emit('message', {
                 message: 'Alle lichten worden uit gezet!'
@@ -308,7 +308,7 @@ io.on('connection', function (socket) {
             for (i = 0; i < 10; i++) {
                 setTimeout(function () {
                     rem('KEY_VOLUP');
-                }, 200 * i);
+                }, 300 * i);
             }
         }
 
@@ -316,7 +316,7 @@ io.on('connection', function (socket) {
             for (i = 0; i < 10; i++) {
                 setTimeout(function () {
                     rem('KEY_VOLDOWN');
-                }, 200 * i);
+                }, 300 * i);
             }
         }
 
