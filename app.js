@@ -120,6 +120,20 @@ io.on('connection', function (socket) {
             });
         }
 
+        if (data.command == 'bedlamp aan') {
+            kaku('M', '14', 'on');
+            socket.emit('message', {
+                message: 'Nightlight is now turned on!'
+            });
+        }
+
+        if (data.command == 'bedlamp uit') {
+            kaku('M', '14', 'off');
+            socket.emit('message', {
+                message: 'Nightlight is now off!'
+            });
+        }
+
         // FAN -------------------------------------------------
         if (data.command == 'ventilator aan') {
             kaku('C', '3', 'on');
@@ -136,102 +150,102 @@ io.on('connection', function (socket) {
         }
 
         // RADIO -----------------------------------------------
-        if (data.command == 'radio aan') {
-            kaku('D', '2', 'on');
-            socket.emit('message', {
-                message: 'Radio has been turned on'
-            });
-        }
+        //if (data.command == 'radio aan') {
+        //    kaku('D', '2', 'on');
+        //    socket.emit('message', {
+        //        message: 'Radio has been turned on'
+        //    });
+        //}
+        //
+        //if (data.command == 'radio uit') {
+        //    kaku('D', '2', 'off');
+        //    socket.emit('message', {
+        //        message: 'Radio is now turned off'
+        //    });
+        //}
 
-        if (data.command == 'radio uit') {
-            kaku('D', '2', 'off');
-            socket.emit('message', {
-                message: 'Radio is now turned off'
-            });
-        }
-
-        // CURTAIN ---------------------------------------------
-        if (data.command == 'gordijn open') {
-            if (!curtainInUse) {
-                if (!curtainOpen) {
-                    // Code that is executed after timer
-                    setTimeout(function () {
-                        curtainInUse = false;
-                        curtainOpen = true;
-                        socket.emit('message', {
-                            message: 'Curtain is now open!'
-                        });
-                    }, 38 * 1000);
-                    //code that will be executed immediately
-                    curtainInUse = true;
-                    exec('sudo python scripts/omhoog.py', function (error, stdout, stderr) {
-                        if (stdout !== null) {
-                            console.log('stdout: ' + stdout);
-                        }
-                        if (stderr !== null) {
-                            console.log('stderr: ' + stderr);
-                        }
-                        if (error !== null) {
-                            console.log('exec error: ' + error);
-                        }
-                    });
-                    socket.emit('message', {
-                        message: 'Curtain is being opened!'
-                    });
-                    // curtainOpen Check
-                } else {
-                    socket.emit('message', {
-                        message: 'Curtain is already open!'
-                    });
-                }
-                // Curtain in use check
-            } else {
-                socket.emit('message', {
-                    message: 'Curtain is already in use!'
-                });
-            }
-        }
-
-        if (data.command == 'gordijn dicht') {
-            if (!curtainInUse) {
-                if (curtainOpen) {
-                    // Code that is executed after timer
-                    setTimeout(function () {
-                        curtainInUse = false;
-                        curtainOpen = false;
-                        socket.emit('message', {
-                            message: 'Curtain has been closed!'
-                        });
-                    }, 38 * 1000);
-                    //code that will be executed immediately
-                    curtainInUse = true;
-                    exec('sudo python scripts/omlaag.py', function (error, stdout, stderr) {
-                        if (stdout !== null) {
-                            console.log('stdout: ' + stdout);
-                        }
-                        if (stderr !== null) {
-                            console.log('stderr: ' + stderr);
-                        }
-                        if (error !== null) {
-                            console.log('exec error: ' + error);
-                        }
-                    });
-                    socket.emit('message', {
-                        message: 'Curtain is being closed'
-                    });
-                // curtainOpen Check
-                } else {
-                    socket.emit('message', {
-                        message: 'Curtain has been closed!'
-                    });
-                }
-            // Curtain in use check
-            } else {
-                socket.emit('message', {
-                    message: 'Curtain is already in use!'
-                });
-            }
-        }
+        // CURTAIN - (DEPRICATED) ------------------------------
+        //if (data.command == 'gordijn open') {
+        //    if (!curtainInUse) {
+        //        if (!curtainOpen) {
+        //            // Code that is executed after timer
+        //            setTimeout(function () {
+        //                curtainInUse = false;
+        //                curtainOpen = true;
+        //                socket.emit('message', {
+        //                    message: 'Curtain is now open!'
+        //                });
+        //            }, 38 * 1000);
+        //            //code that will be executed immediately
+        //            curtainInUse = true;
+        //            exec('sudo python scripts/omhoog.py', function (error, stdout, stderr) {
+        //                if (stdout !== null) {
+        //                    console.log('stdout: ' + stdout);
+        //                }
+        //                if (stderr !== null) {
+        //                    console.log('stderr: ' + stderr);
+        //                }
+        //                if (error !== null) {
+        //                    console.log('exec error: ' + error);
+        //                }
+        //            });
+        //            socket.emit('message', {
+        //                message: 'Curtain is being opened!'
+        //            });
+        //            // curtainOpen Check
+        //        } else {
+        //            socket.emit('message', {
+        //                message: 'Curtain is already open!'
+        //            });
+        //        }
+        //        // Curtain in use check
+        //    } else {
+        //        socket.emit('message', {
+        //            message: 'Curtain is already in use!'
+        //        });
+        //    }
+        //}
+        //
+        //if (data.command == 'gordijn dicht') {
+        //    if (!curtainInUse) {
+        //        if (curtainOpen) {
+        //            // Code that is executed after timer
+        //            setTimeout(function () {
+        //                curtainInUse = false;
+        //                curtainOpen = false;
+        //                socket.emit('message', {
+        //                    message: 'Curtain has been closed!'
+        //                });
+        //            }, 38 * 1000);
+        //            //code that will be executed immediately
+        //            curtainInUse = true;
+        //            exec('sudo python scripts/omlaag.py', function (error, stdout, stderr) {
+        //                if (stdout !== null) {
+        //                    console.log('stdout: ' + stdout);
+        //                }
+        //                if (stderr !== null) {
+        //                    console.log('stderr: ' + stderr);
+        //                }
+        //                if (error !== null) {
+        //                    console.log('exec error: ' + error);
+        //                }
+        //            });
+        //            socket.emit('message', {
+        //                message: 'Curtain is being closed'
+        //            });
+        //        // curtainOpen Check
+        //        } else {
+        //            socket.emit('message', {
+        //                message: 'Curtain has been closed!'
+        //            });
+        //        }
+        //    // Curtain in use check
+        //    } else {
+        //        socket.emit('message', {
+        //            message: 'Curtain is already in use!'
+        //        });
+        //    }
+        //}
 
         // TV --------------------------------------------------
         if (data.command == 'tv volume omhoog') {
@@ -246,7 +260,7 @@ io.on('connection', function (socket) {
             for (i = 0; i < 10; i++) {
                 setTimeout(function () {
                     rem('KEY_VOLUP');
-                }, 10 * 100);
+                }, 1500);
             }
         }
 
@@ -254,7 +268,7 @@ io.on('connection', function (socket) {
             for (i = 0; i < 10; i++) {
                 setTimeout(function () {
                     rem('KEY_VOLDOWN');
-                }, 10 * 100);
+                }, 1500);
             }
         }
 
@@ -278,19 +292,19 @@ io.on('connection', function (socket) {
             rem('KEY_ENTER');
         }
 
-        if (data.command == 'tv naar rechts') {
+        if (data.command == 'tv rechts') {
             rem('KEY_RIGHT');
         }
 
-        if (data.command == 'tv naar links') {
+        if (data.command == 'tv links') {
             rem('KEY_LEFT');
         }
 
-        if (data.command == 'tv naar boven') {
+        if (data.command == 'tv boven') {
             rem('KEY_UP');
         }
 
-        if (data.command == 'tv naar beneden') {
+        if (data.command == 'tv beneden') {
             rem('KEY_DOWN');
         }
 
@@ -339,9 +353,9 @@ io.on('connection', function (socket) {
             if (!cookerInUse) {
                 cookerInUse = true;
                 //console.log(cookerInUse);
-                kaku('C', '2', 'on');
+                kaku('M', '15', 'on');
                 setTimeout(function () {
-                    kaku('C', '2', 'off');
+                    kaku('M', '15', 'off');
                     cookerInUse = false;
                     socket.emit('message', {
                         message: 'Water has been cooked!'
