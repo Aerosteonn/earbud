@@ -106,6 +106,20 @@ io.on('connection', function (socket) {
         console.log(number);
 
         // LIGHTS ----------------------------------------------
+        if (data.command == 'bureaulamp aan') {
+            kaku('zzxyz', '20484', 'on');
+            socket.emit('message', {
+                message: 'Bureaulamp staat nu aan!'
+            });
+        }
+
+        if (data.command == 'bureaulamp uit') {
+            kaku('zzxyz', '20484', 'off');
+            socket.emit('message', {
+                message: 'Bureaulamp staat nu uit!'
+            });
+        }
+
         if (data.command == 'nachtlamp aan') {
             kaku('C', '1', 'on');
             socket.emit('message', {
@@ -134,53 +148,63 @@ io.on('connection', function (socket) {
             });
         }
 
-        if (data.command == 'tv lamp aan') {
+        if (data.command == 'tv lamp aan' || data.command == 'tv licht aan') {
             kaku('M', '16', 'on');
             socket.emit('message', {
                 message: 'Tv meubel lamp staat nu aan!'
             });
         }
 
-        if (data.command == 'tv lamp uit') {
+        if (data.command == 'tv lamp uit' || data.command == 'tv licht uit') {
             kaku('M', '16', 'off');
             socket.emit('message', {
                 message: 'Tv meubel lamp staat nu uit!'
             });
         }
 
-        if (data.command == 'alle lichten aan') {
+        if (data.command == 'alle lichten aan' || data.command == 'alle lampen aan') {
 
             kaku('C', '1', 'on');
 
             setTimeout(function () {
                 kaku('M', '14', 'on');
-            }, 1500);
+            }, 1250);
 
             setTimeout(function () {
                 kaku('M', '16', 'on');
-            }, 3000);
+            }, 2500);
+
+            setTimeout(function () {
+                kaku('zzxyz', '20484', 'on');
+            }, 3750);
 
             socket.emit('message', {
                 message: 'Alle lichten worden aan gezet!'
             });
         }
 
-        if (data.command == 'alle lichten uit') {
+        if (data.command == 'alle lichten uit' || data.command == 'alle lampen uit') {
 
             kaku('C', '1', 'off');
 
             setTimeout(function () {
                 kaku('M', '14', 'off');
-            }, 1500);
+            }, 1250);
 
             setTimeout(function () {
                 kaku('M', '16', 'off');
-            }, 3000);
+            }, 2500);
+
+            setTimeout(function () {
+                kaku('zzxyz', '20484', 'off');
+            }, 3750);
 
             socket.emit('message', {
                 message: 'Alle lichten worden uit gezet!'
             });
         }
+
+
 
         // FAN -------------------------------------------------
         if (data.command == 'ventilator aan') {
