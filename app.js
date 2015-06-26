@@ -149,18 +149,34 @@ io.on('connection', function (socket) {
         }
 
         if (data.command == 'alle lichten aan') {
+
             kaku('C', '1', 'on');
-            kaku('M', '14', 'on');
-            kaku('M', '16', 'on');
+
+            setTimeout(function () {
+                kaku('M', '14', 'on');
+            }, 200);
+
+            setTimeout(function () {
+                kaku('M', '16', 'on');
+            }, 400);
+
             socket.emit('message', {
                 message: 'Alle lichten staan nu aan!'
             });
         }
 
         if (data.command == 'alle lichten uit') {
+
             kaku('C', '1', 'off');
-            kaku('M', '14', 'off');
-            kaku('M', '16', 'off');
+
+            setTimeout(function () {
+                kaku('M', '14', 'off');
+            }, 200);
+
+            setTimeout(function () {
+                kaku('M', '16', 'off');
+            }, 400);
+
             socket.emit('message', {
                 message: 'Alle lichten staan nu uit!'
             });
@@ -292,7 +308,7 @@ io.on('connection', function (socket) {
             for (i = 0; i < 10; i++) {
                 setTimeout(function () {
                     rem('KEY_VOLUP');
-                }, 500 * i);
+                }, 200 * i);
             }
         }
 
@@ -300,7 +316,7 @@ io.on('connection', function (socket) {
             for (i = 0; i < 10; i++) {
                 setTimeout(function () {
                     rem('KEY_VOLDOWN');
-                }, 500 * i);
+                }, 200 * i);
             }
         }
 
