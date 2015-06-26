@@ -176,6 +176,10 @@
             socket.emit('request', {command: 'nachtlamp ' + status});
         }
 
+        var deskLight = function (status) {
+            socket.emit('request', {command: 'bureaulamp ' + status});
+        }
+
         var bedLight = function (status) {
             socket.emit('request', {command: 'bedlamp ' + status});
         }
@@ -223,6 +227,8 @@
 
             'bedlamp *status': bedLight,
             'bed lamp *status': bedLight,
+
+            'bureaulamp *status': deskLight,
 
             'alle lichten *status': allLights,
 
