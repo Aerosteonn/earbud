@@ -241,10 +241,13 @@
 //            'radio *status': radio,
 //            'gordijn *status': curtain,
 
-            'dankjewel': speech('Graag gedaan!'),
-            'bedankt': speech('Geen probleem baas!'),
+            'dankjewel': function() {
+                speech('Graag gedaan!');
+            },
 
-            'hoer': speech('Kijk naar jezelf, vieze tinder slet'),
+//            'bedankt': speech('Geen probleem baas!'),
+//
+//            'hoer': speech('Kijk naar jezelf, vieze tinder slet'),
 
             // test
             'panda': kaas,
