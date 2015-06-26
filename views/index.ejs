@@ -103,8 +103,11 @@
                                 Een korte introductie tot het systeem!
                             </div>
                             <div class="panel-body">
-                                <p class="lead">Sta het gebruik van je microfoon toe en je kan direct beginnen met praten!</p>
-                                <p class="lead">Zeg maar eens 'Hallo' of 'Tot ziens! en er zijn nog veel meer mogelijkheden!'</p>
+                                <p class="lead">Sta het gebruik van je microfoon toe en je kan direct beginnen met
+                                    praten!</p>
+
+                                <p class="lead">Zeg maar eens 'Hallo' of 'Tot ziens! en er zijn nog veel meer
+                                    mogelijkheden!'</p>
                             </div>
                         </div>
                     </div>
@@ -124,57 +127,71 @@
 <script>
     var socket = io();
 
+    var speech = function (message) {
+        if ('speechSynthesis' in window) {
+            var msg = new SpeechSynthesisUtterance();
+            var voices = speechSynthesis.getVoices();
+            msg.lang = 'nl-NL';
+            msg.voice = voices[0];
+            msg.rate = 1; // 0.1 to 10
+            msg.text = message;
+            speechSynthesis.speak(msg);
+        } else {
+            alert(message);
+        }
+    }
+
     if (annyang) {
 
-        var goodbye = function(){
+        var goodbye = function () {
             window.open('/signout', "_self");
         }
 
-        var hello = function(){
-            alert('Hallo!');
+        var hello = function () {
+            speech('Hallo!');
         }
 
-        var helloName = function(name){
-            alert('Hallo! ik ben ' + name + '!');
+        var helloName = function (name) {
+            speech('Hallo! ik ben ' + name + '!');
         }
 
-        var helloPerson = function(name){
-            alert('Hallo ' + name + ', hoe maakt u het?');
+        var helloPerson = function (name) {
+            speech('Hallo ' + name + ', hoe maakt u het?');
         }
 
-        var kaas = function(){
-            alert('Panda!');
+        var kaas = function () {
+            speech('Panda!');
         }
 
-        var tv = function(param){
-            socket.emit('request', {command:'tv ' + param});
+        var tv = function (param) {
+            socket.emit('request', {command: 'tv ' + param});
         }
 
-        var light = function(status){
-            socket.emit('request', {command:'nachtlamp ' + status});
+        var light = function (status) {
+            socket.emit('request', {command: 'nachtlamp ' + status});
         }
 
-        var bedLight = function(status){
-            socket.emit('request', {command:'bedlamp ' + status});
+        var bedLight = function (status) {
+            socket.emit('request', {command: 'bedlamp ' + status});
         }
 
-        var radio = function(status){
-            socket.emit('request', {command:'radio ' + status});
+        var radio = function (status) {
+            socket.emit('request', {command: 'radio ' + status});
         }
 
-        var vent = function(status){
-            socket.emit('request', {command:'ventilator ' + status});
+        var vent = function (status) {
+            socket.emit('request', {command: 'ventilator ' + status});
         }
 
-        var cookWater = function(){
+        var cookWater = function () {
             socket.emit('request', {command: 'kook water'});
         }
 
-        var ps4 = function(){
+        var ps4 = function () {
             socket.emit('request', {command: 'playstation'});
         }
 
-        var curtain = function(status){
+        var curtain = function (status) {
             socket.emit('request', {command: 'gordijn ' + status});
         }
 
@@ -193,18 +210,23 @@
             // Met naam
             'Hallo *name': helloName,
             'Hoi *name': helloName,
+
             'Goedendag *name': helloName,
 
             // devices
             'nachtlamp *status': light,
+
             'bedlamp *status': bedLight,
             'bed lamp *status': bedLight,
+
             'kook water': cookWater,
             'water koken': cookWater,
+
             'ventilator *status': vent,
+
             'playstation': ps4,
-            'radio *status': radio,
-            'gordijn *status': curtain,
+//            'radio *status': radio,
+//            'gordijn *status': curtain,
 
             // test
             'panda': kaas,

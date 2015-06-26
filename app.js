@@ -109,28 +109,28 @@ io.on('connection', function (socket) {
         if (data.command == 'nachtlamp aan') {
             kaku('C', '1', 'on');
             socket.emit('message', {
-                message: 'Nightlight is now turned on!'
+                message: 'Nachtlamp staat nu aan!'
             });
         }
 
         if (data.command == 'nachtlamp uit') {
             kaku('C', '1', 'off');
             socket.emit('message', {
-                message: 'Nightlight is now off!'
+                message: 'Nachtlamp staat nu uit!'
             });
         }
 
         if (data.command == 'bedlamp aan') {
             kaku('M', '14', 'on');
             socket.emit('message', {
-                message: 'Nightlight is now turned on!'
+                message: 'Bedlamp staat nu aan!'
             });
         }
 
         if (data.command == 'bedlamp uit') {
             kaku('M', '14', 'off');
             socket.emit('message', {
-                message: 'Nightlight is now off!'
+                message: 'Bedlamp staat nu uit!'
             });
         }
 
@@ -138,14 +138,14 @@ io.on('connection', function (socket) {
         if (data.command == 'ventilator aan') {
             kaku('C', '3', 'on');
             socket.emit('message', {
-                message: 'Fan has been turned on'
+                message: 'Ventilator staat nu aan!'
             });
         }
 
         if (data.command == 'ventilator uit') {
             kaku('C', '3', 'off');
             socket.emit('message', {
-                message: 'Fan has been turned off'
+                message: 'Ventilator staat nu uit!'
             });
         }
 
@@ -358,7 +358,7 @@ io.on('connection', function (socket) {
                     kaku('M', '15', 'off');
                     cookerInUse = false;
                     socket.emit('message', {
-                        message: 'Water has been cooked!'
+                        message: 'Water heeft gekookt!'
                     });
                 }, 18 * 10000);
                 console.log('started cooking water');
@@ -366,9 +366,9 @@ io.on('connection', function (socket) {
                     message: 'In 3 minutes the water will be done cooking'
                 });
             } else {
-                console.log('Cooker is already in use!');
+                console.log('Waterkoker is al in gebruik!');
                 socket.emit('message', {
-                    message: 'Water is already cooking!'
+                    message: 'Water wordt al gekookt!'
                 });
             }
         }
