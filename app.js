@@ -134,6 +134,38 @@ io.on('connection', function (socket) {
             });
         }
 
+        if (data.command == 'tv lamp aan') {
+            kaku('M', '16', 'on');
+            socket.emit('message', {
+                message: 'Tv meubel lamp staat nu aan!'
+            });
+        }
+
+        if (data.command == 'tv lamp uit') {
+            kaku('M', '16', 'off');
+            socket.emit('message', {
+                message: 'Tv meubel lamp staat nu uit!'
+            });
+        }
+
+        if (data.command == 'alle lichten aan') {
+            kaku('C', '1', 'on');
+            kaku('M', '14', 'on');
+            kaku('M', '16', 'on');
+            socket.emit('message', {
+                message: 'Alle lichten staan nu aan!'
+            });
+        }
+
+        if (data.command == 'alle lichten uit') {
+            kaku('C', '1', 'off');
+            kaku('M', '14', 'off');
+            kaku('M', '16', 'off');
+            socket.emit('message', {
+                message: 'Alle lichten staan nu uit!'
+            });
+        }
+
         // FAN -------------------------------------------------
         if (data.command == 'ventilator aan') {
             kaku('C', '3', 'on');

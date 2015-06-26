@@ -164,6 +164,10 @@
             speech('Panda!');
         }
 
+        var allLights = function(status) {
+            socket.emit('request', {command: 'alle lichten ' + status});
+        }
+
         var tv = function (param) {
             socket.emit('request', {command: 'tv ' + param});
         }
@@ -219,6 +223,8 @@
 
             'bedlamp *status': bedLight,
             'bed lamp *status': bedLight,
+
+            'alle lichten *status': allLights,
 
             'kook water': cookWater,
             'water koken': cookWater,
