@@ -154,14 +154,14 @@ io.on('connection', function (socket) {
 
             setTimeout(function () {
                 kaku('M', '14', 'on');
-            }, 200);
+            }, 1000);
 
             setTimeout(function () {
                 kaku('M', '16', 'on');
-            }, 400);
+            }, 2000);
 
             socket.emit('message', {
-                message: 'Alle lichten staan nu aan!'
+                message: 'Alle lichten worden aan gezet!'
             });
         }
 
@@ -171,14 +171,14 @@ io.on('connection', function (socket) {
 
             setTimeout(function () {
                 kaku('M', '14', 'off');
-            }, 200);
+            }, 1000);
 
             setTimeout(function () {
                 kaku('M', '16', 'off');
-            }, 400);
+            }, 2000);
 
             socket.emit('message', {
-                message: 'Alle lichten staan nu uit!'
+                message: 'Alle lichten worden uit gezet!'
             });
         }
 
