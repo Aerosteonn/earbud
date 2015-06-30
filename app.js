@@ -11,7 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var exec = require('child_process').exec;
 var SamsungRemote = require('samsung-remote');
 var remote = new SamsungRemote({
-    ip: '192.168.188.130' // required: IP address of your Samsung Smart TV
+    ip: '192.168.1.145' // required: IP address of your Samsung Smart TV
 });
 
 // custom libraries
@@ -350,10 +350,6 @@ io.on('connection', function (socket) {
 
         if (data.command == 'tv slaap') {
             rem('KEY_SLEEP');
-        }
-
-        if (data.command == 'tv slaap') {
-            rem('KEY_HOME');
         }
 
         if (data.command == 'tv thuis') {
